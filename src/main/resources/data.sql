@@ -1,0 +1,3 @@
+INSERT INTO url(id, created_date, last_changed_date, public_identifier, target_url, deleted_date, times_accessed) VALUES(1, now(), now(), '123', 'http://wikipedia.org', null, 0);
+INSERT INTO url(id, created_date, last_changed_date, public_identifier, target_url, deleted_date, times_accessed) VALUES(2, now(), now(), '321', 'http://google.com', null, 0);
+INSERT INTO url(id, created_date, last_changed_date, public_identifier, target_url, deleted_date, times_accessed) VALUES(3, now(), now(), '234', 'http://amazon.de', null, 0);
