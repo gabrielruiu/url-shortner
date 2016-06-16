@@ -5,7 +5,6 @@ import gabrielruiu.urlshortner.exception.UrlIsMarkedAsDeletedException;
 import gabrielruiu.urlshortner.exception.UrlNotFoundException;
 import gabrielruiu.urlshortner.repository.UrlRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 /**
@@ -14,8 +13,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class UrlShortnerService {
 
-    @Value("${url.identifier.length}")
-    private int urlIdentifierLength;
+    @Autowired
+    private PublicIdentifierGenerator publicIdentifierGenerator;
 
     @Autowired
     private UrlRepository urlRepository;
@@ -28,6 +27,13 @@ public class UrlShortnerService {
         if (url.getDeletedDate() != null) {
             throw new UrlIsMarkedAsDeletedException(urlIdentifier);
         }
+        return url;
+    }
+
+    public Url saveUrlWithTarget(String targetUrl) {
+        Url url = new Url();
+        url.setTargetUrl(targetUrl);
+        url.setPublicIdentifier(publicIdentifierGenerator.generatePublicIdentifier());
         return url;
     }
 }

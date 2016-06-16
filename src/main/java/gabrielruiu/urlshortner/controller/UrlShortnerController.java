@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -27,5 +28,11 @@ public class UrlShortnerController {
         } catch (UrlNotFoundException | UrlIsMarkedAsDeletedException e) {
             return null;
         }
+    }
+
+    @RequestMapping(value = "compress/{target-url}", method = RequestMethod.GET)
+    public ModelAndView compressUrl(@PathVariable("target-url") String targetUrl) {
+        Url url = urlShortnerService.saveUrlWithTarget(targetUrl);
+        return new ModelAndView("compress", "publicIdentifier", url.getPublicIdentifier());
     }
 }
