@@ -1,0 +1,9 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>UrlShortner - Compressed url</title>
+</head>
+<body>
+<h2>This is your shortened url</h2>
+<a th:href="${compressedUrl}" target="_blank"><p th:text="${compressedUrl}"></p></a>
+</body>
+</html>

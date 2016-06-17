@@ -34,6 +34,6 @@ public class UrlShortnerService {
         Url url = new Url();
         url.setTargetUrl(targetUrl);
         url.setPublicIdentifier(publicIdentifierGenerator.generatePublicIdentifier());
-        return url;
+        return urlRepository.save(url);
     }
 }
