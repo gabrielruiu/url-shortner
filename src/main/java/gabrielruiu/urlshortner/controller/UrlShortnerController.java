@@ -26,7 +26,7 @@ public class UrlShortnerController {
     @Autowired
     private CompressedUrlResolver compressedUrlResolver;
 
-    @RequestMapping("/d/{url-identifier}")
+    @RequestMapping("/{url-identifier}")
     public ModelAndView decompressUrl(@PathVariable("url-identifier") String urlIdentifier) {
         try {
             Url url = urlShortnerService.findUrlByUrlIdentifier(urlIdentifier);
